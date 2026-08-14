@@ -1,0 +1,25 @@
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env/
+
+# Environment Variables (Keep secrets out of git!)
+.env
+.env.local
+*.env
+
+# ML Models & Data (Only share these via Drive/Slack)
+*.pkl
+ml-service/data/*.csv
+
+# OS generated files
+.DS_Store
+Thumbs.db
