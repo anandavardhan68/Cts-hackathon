@@ -1,0 +1,23 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: fdaas-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: fdaas
+      POSTGRES_PASSWORD: fdaas_local_pw
+      POSTGRES_DB: fdaas
+    ports:
+      - "5432:5432"
+    volumes:
+      - fdaas_pg_data:/var/lib/postgresql/data
+     
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fdaas -d fdaas"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  fdaas_pg_data:

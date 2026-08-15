@@ -1,0 +1,24 @@
+{
+  "name": "fdaas-gateway",
+  "version": "1.0.0",
+  "description": "FDaaS Node.js/Express API gateway — Postgres + Neo4j orchestration",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "seed": "node seed/seedTransactions.js",
+    "db:test": "node src/db/pool.js"
+  },
+  "dependencies": {
+    "pg": "^8.13.1",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1",
+    "axios": "^1.7.9",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
