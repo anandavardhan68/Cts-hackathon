@@ -16,6 +16,8 @@ import numpy as np
 import shap
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
@@ -55,15 +57,16 @@ def get_tier(rf_proba, iso_score):
 
 
 def build_feature_vector(payload):
-    """
-    Builds the model input in FEATURE_ORDER exactly. merchant_category
-    arrives as a string in the request and must go through the SAME
-    fitted encoder used during training.
-    """
-    row = dict(payload)  # shallow copy, don't mutate the original request
-    row["merchant_category_encoded"] = int(
-        encoder.transform([row["merchant_category"]])[0]
-    )
+    row = dict(payload)
+    try:
+        row["merchant_category_encoded"] = int(
+            encoder.transform([row["merchant_category"]])[0]
+        )
+    except ValueError:
+        # Unknown category — fall back to the most common training
+        # category rather than hard-failing the whole transaction.
+        fallback = encoder.classes_[0]
+        row["merchant_category_encoded"] = int(encoder.transform([fallback])[0])
     try:
         vector = [row[feat] for feat in FEATURE_ORDER]
     except KeyError as e:
