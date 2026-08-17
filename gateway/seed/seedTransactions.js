@@ -4,7 +4,7 @@
 // data for the models — that's ml-service/prepare_dataset.py's job.
 //
 // Run: npm run seed   (or: node seed/seedTransactions.js)
-
+require('dotenv').config();
 const pool = require('../src/db/pool');
 
 const NUM_USERS = 50;

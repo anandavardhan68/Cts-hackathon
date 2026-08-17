@@ -1,0 +1,13 @@
+{
+  "name": "fdaas-graph-seed",
+  "version": "1.0.0",
+  "description": "Standalone Neo4j seeding script — run once before the gateway needs graph data",
+  "main": "seed/seedGraph.js",
+  "scripts": {
+    "seed": "node seed/seedGraph.js"
+  },
+  "dependencies": {
+    "neo4j-driver": "^5.27.0",
+    "dotenv": "^16.4.7"
+  }
+}

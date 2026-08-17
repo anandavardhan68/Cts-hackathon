@@ -1,0 +1,1 @@
+["amount", "hour_of_day", "day_of_week", "merchant_category_encoded", "distance_from_last_txn_km", "velocity_kmh", "txn_count_last_1hr", "txn_count_last_24hr", "amount_deviation_from_user_avg", "is_new_device_for_user", "hop_distance_to_flagged", "linked_account_count"]
