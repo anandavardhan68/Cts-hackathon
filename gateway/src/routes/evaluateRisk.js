@@ -101,8 +101,8 @@ router.post('/evaluate-risk', async (req, res) => {
       features,
       result,
     };
-    req.app.get('io').emit('transaction_result', payload);
-
+    //req.app.get('io').emit('transaction_result', payload);
+    req.app.get('io').emit('transaction:scored', payload);
     return res.status(200).json(payload);
   } catch (err) {
     console.error('[evaluateRisk] failed:', err);

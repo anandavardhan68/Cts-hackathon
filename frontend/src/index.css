@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-sentinel-50 text-sentinel-900 font-sans antialiased text-sm;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+@keyframes flashRow {
+  0% { background-color: rgba(226, 232, 240, 0.9); }
+  100% { background-color: transparent; }
+}
+
+.animate-flash {
+  animation: flashRow 1.2s cubic-bezier(0, 0, 0.2, 1);
+}
