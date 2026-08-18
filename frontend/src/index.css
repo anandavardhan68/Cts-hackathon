@@ -1,18 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  body {
-    @apply bg-slate-50 text-slate-900 font-sans antialiased text-base; 
-  }
+body {
+  @apply bg-canvas text-ink-900 font-body antialiased;
 }
 
-@keyframes flashRow {
-  0% { background-color: rgba(226, 232, 240, 0.9); }
-  100% { background-color: transparent; }
+h1, h2, h3 {
+  @apply font-display;
 }
 
-.animate-flash {
-  animation: flashRow 1.2s cubic-bezier(0, 0, 0.2, 1);
+code, .mono {
+  @apply font-mono;
+}
+
+/* Signature hero stroke — a single restrained arcing gradient line,
+   not a scattered confetti effect. Used once, in the Landing hero. */
+.aegis-arc {
+  background: linear-gradient(90deg, #2F6690 0%, #6FA8C9 50%, #B9D6E6 100%);
+  height: 3px;
+  border-radius: 999px;
+}
+
+:focus-visible {
+  outline: 2px solid #2F6690;
+  outline-offset: 2px;
 }
