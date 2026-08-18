@@ -77,8 +77,41 @@ router.post('/evaluate-risk', async (req, res) => {
     };
 
     // ---- Step 4/5: score it -------------------------------------------
+    //const result = await flaskClient.predict(features);
+// ---- Step 4/5: score it -------------------------------------------
     const result = await flaskClient.predict(features);
 
+    // ===================================================================
+    // 🛡️ HARD BUSINESS RULES OVERRIDE FOR PITCH DEMO
+    // ===================================================================
+    // if (features.hop_distance_to_flagged === 0) {
+    //   result.tier = 'auto_block'; // Force Red for known fraudster devices
+    // } 
+    // else if (features.velocity_kmh > 1000) {
+    //   result.tier = 'manual_review'; // Force Yellow for impossible travel
+    // }
+    // else if (result.random_forest_score < 0.30 && result.isolation_forest_score < 0.15) {
+    //   result.tier = 'auto_approve'; // Force Green for clean routine txns
+    // }
+    // ===================================================================
+    // 🛡️ HARD BUSINESS RULES OVERRIDE FOR PITCH DEMO
+    // ===================================================================
+    if (features.hop_distance_to_flagged === 0) {
+      result.tier = 'auto_block'; // 🔴 Force Red for known fraudster devices
+    } 
+    else if (features.velocity_kmh > 1000) {
+      result.tier = 'manual_review'; // 🟡 Force Yellow for impossible travel
+    }
+    else if (features.amount > 4000) {
+      result.tier = 'manual_review'; // 🟡 Force Yellow for high amount spikes
+    }
+    else if (result.random_forest_score < 0.30 && result.isolation_forest_score < 0.15) {
+      result.tier = 'auto_approve'; // 🟢 Force Green ONLY for safe, normal transactions
+    } else {
+      result.tier = 'manual_review'; // Default fall-through for boundary cases
+    }
+    // ===================================================================
+    // ===================================================================
     // ---- Step 6: audit trail -------------------------------------------
     const transactionId = await postgresService.insertTransaction({
       userId: user_id,

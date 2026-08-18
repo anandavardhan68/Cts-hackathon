@@ -4,8 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-sentinel-50 text-sentinel-900 font-sans antialiased text-sm;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    @apply bg-slate-50 text-slate-900 font-sans antialiased text-base; 
   }
 }
 

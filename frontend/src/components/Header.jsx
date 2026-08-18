@@ -1,62 +1,61 @@
 import React from 'react';
-import { Shield, Radio, Terminal, Code2, RefreshCw } from 'lucide-react';
+import { Shield, Terminal, Code2, RefreshCw } from 'lucide-react';
 
 export default function Header({ isConnected, onOpenSandbox, onOpenApiDocs, onClearStream }) {
   return (
-    <header className="bg-white border-b border-sentinel-200 sticky top-0 z-30 px-6 py-3 flex items-center justify-between">
-      <div className="flex items-center space-x-4">
-        <div className="flex items-center space-x-2.5">
-          <div className="w-8 h-8 rounded bg-sentinel-900 flex items-center justify-center text-white">
-            <Shield className="w-4 h-4" />
+    <header className="bg-white border-b border-slate-200 sticky top-0 z-30 px-6 py-4 flex items-center justify-between shadow-sm">
+      <div className="flex items-center space-x-6">
+        <div className="flex items-center space-x-3">
+          <div className="w-10 h-10 rounded-lg bg-slate-900 flex items-center justify-center text-white shadow-md">
+            <Shield className="w-6 h-6" />
           </div>
           <div>
-            <div className="flex items-center space-x-2">
-              <span className="font-semibold text-sentinel-900 tracking-tight text-base">SENTINEL</span>
-              <span className="text-[10px] font-mono uppercase px-1.5 py-0.5 rounded bg-sentinel-100 border border-sentinel-300 text-sentinel-700 font-bold">
+            <div className="flex items-center space-x-3">
+              <span className="text-2xl font-black text-slate-900 tracking-tight">AEGIS</span>
+              <span className="text-xs font-mono uppercase px-2 py-1 rounded bg-slate-100 border border-slate-300 text-slate-700 font-bold">
                 FDaaS OPS
               </span>
             </div>
-            <p className="text-xs text-sentinel-500 font-mono">NODE GATEWAY :4000 // ML ENGINE :5001</p>
           </div>
         </div>
 
-        <div className="h-5 w-px bg-sentinel-200 hidden md:block" />
+        <div className="h-8 w-px bg-slate-200 hidden md:block" />
 
         {/* Live Status indicator */}
-        <div className="flex items-center space-x-2">
-          <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-mono font-medium ${
+        <div className="flex items-center">
+          <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-mono font-bold shadow-sm ${
             isConnected 
               ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' 
               : 'bg-red-50 text-red-700 border border-red-200'
           }`}>
-            <span className={`w-1.5 h-1.5 rounded-full mr-1.5 ${isConnected ? 'bg-emerald-500 animate-pulse' : 'bg-red-500'}`} />
-            {isConnected ? 'SOCKET LIVE' : 'DISCONNECTED'}
+            <span className={`w-2 h-2 rounded-full mr-2 ${isConnected ? 'bg-emerald-500 animate-pulse' : 'bg-red-500'}`} />
+            {isConnected ? 'LIVE STREAM CONNECTED' : 'DISCONNECTED'}
           </span>
         </div>
       </div>
 
-      <div className="flex items-center space-x-3">
+      <div className="flex items-center space-x-4">
         <button
           onClick={onClearStream}
           title="Clear Table"
-          className="px-2.5 py-1.5 text-xs font-medium text-sentinel-600 hover:text-sentinel-900 hover:bg-sentinel-100 rounded border border-sentinel-200 transition"
+          className="p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-md border border-slate-200 transition"
         >
-          <RefreshCw className="w-3.5 h-3.5" />
+          <RefreshCw className="w-5 h-5" />
         </button>
 
         <button
           onClick={onOpenApiDocs}
-          className="inline-flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium text-sentinel-700 bg-white hover:bg-sentinel-50 rounded border border-sentinel-300 transition shadow-sm"
+          className="inline-flex items-center space-x-2 px-4 py-2 text-sm font-bold text-slate-700 bg-white hover:bg-slate-50 rounded-md border border-slate-300 transition shadow-sm"
         >
-          <Code2 className="w-3.5 h-3.5 text-sentinel-500" />
+          <Code2 className="w-4 h-4 text-slate-500" />
           <span>API Docs</span>
         </button>
 
         <button
           onClick={onOpenSandbox}
-          className="inline-flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium text-white bg-sentinel-900 hover:bg-sentinel-800 rounded transition shadow-sm"
+          className="inline-flex items-center space-x-2 px-4 py-2 text-sm font-bold text-white bg-slate-900 hover:bg-slate-800 rounded-md transition shadow-sm"
         >
-          <Terminal className="w-3.5 h-3.5" />
+          <Terminal className="w-4 h-4" />
           <span>Test Sandbox</span>
         </button>
       </div>
